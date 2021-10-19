@@ -53998,6 +53998,9 @@
   <foreignObject x="497.96" y="631.19" width="492.27" height="61.65">
     <input id="country" type="text" value="SVERIGE" />
   </foreignObject>
+  <foreignObject x="1351.27" y="755.96" width="75.16" height="57.35">
+    <button id="mute-button" type="text" >🔇<button>
+  </foreignObject>
 </svg>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323" />
 <style>
@@ -54026,9 +54029,13 @@
     width: 492.27px;
     font-size: 5rem;
   }
+  #mute-button{
+    height: 100%;
+    width: 100%;
+    font-size: 2rem;
+  }
 </style>
 <script>
-
   function currentTime() {
     let date = new Date();
     let hh = date.getHours();
@@ -54047,4 +54054,11 @@
     }, 1000);
   }
   currentTime();
+  document.getElementById("mute-button").addEventListener("click", function (e) {
+if(this.innerText === '🔇'){
+  this.innerText = '🔈'
+}else{
+  this.innerText = '🔇'
+}
+  });
 </script>
