@@ -54062,3 +54062,43 @@ if(this.innerText === '🔇'){
 }
   });
 </script>
+
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = 'BQBv45LOv7eqTMsrfiS4mqYCTkIQBkbr-2qkKeiZS5bYGC5qAt2hVbZsMYkybG-1GRRXMajpYDPKcmyL_O5iGECwOZyeWZe6uzHZf6gJSZSsczXtZr9JxmnH09ILn0TLFoV4prkT0lT_1jG-L4hoO7_wED4MYMEFirFvVgMyOYCvOYxOPFe-h6g';
+            const player = new Spotify.Player({
+                name: 'Web Playback SDK Quick Start Player',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.5
+            });
+
+            // Ready
+            player.addListener('ready', ({ device_id }) => {
+                console.log('Ready with Device ID', device_id);
+            });
+
+            // Not Ready
+            player.addListener('not_ready', ({ device_id }) => {
+                console.log('Device ID has gone offline', device_id);
+            });
+
+            player.addListener('initialization_error', ({ message }) => {
+                console.error(message);
+            });
+
+            player.addListener('authentication_error', ({ message }) => {
+                console.error(message);
+            });
+
+            player.addListener('account_error', ({ message }) => {
+                console.error(message);
+            });
+
+            document.getElementById('mute-button').onclick = function() {
+              player.togglePlay();
+            };
+
+            player.connect();
+        }
+    </script>
